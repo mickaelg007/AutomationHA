@@ -1,0 +1,197 @@
+alias: Charge Auto Dynamique (V Le Chat)
+description: Charge Auto basée sur la production solaire
+triggers:
+  - entity_id: sensor.total_solaire
+    above: 700
+    trigger: numeric_state
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 600 and
+              states('sensor.total_solaire') | float <= 800 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 200
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 200 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 200
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 800 and
+              states('sensor.total_solaire') | float <= 1000 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 400
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 400 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 400
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 1000 and
+              states('sensor.total_solaire') | float <= 1200 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 600
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 600 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 600
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 1200 and
+              states('sensor.total_solaire') | float <= 1400 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 800
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 800 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 800
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 1400 and
+              states('sensor.total_solaire') | float <= 1600 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 1000
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 1000 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 1000
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 1600 and
+              states('sensor.total_solaire') | float <= 1800 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 1200
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 1200 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 1200
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 1800 and
+              states('sensor.total_solaire') | float <= 2000 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 1400
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 1400 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 1400
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: >-
+              {{ states('sensor.total_solaire') | float > 2000 and
+              states('sensor.total_solaire') | float <= 2200 }}
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 1600
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 1600 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 1600
+            action: number.set_value
+      - conditions:
+          - condition: template
+            value_template: "{{ states('sensor.total_solaire') | float > 2200 }}"
+        sequence:
+          - target:
+              device_id: 2d469b6e057fa263df021b62ee404a5b
+              entity_id: number.delta_pro_ac_charging_power
+            data:
+              value: 1800
+            action: number.set_value
+          - data:
+              message: Charge de la batterie à 1800 W
+            action: notify.mobile_app_oneplus11
+          - target:
+              device_id: 3062127c5dfaffe1f4b4e3ffa605a2f3
+              entity_id: number.delta_max_ac_charging_power
+            data:
+              value: 1800
+            action: number.set_value
+mode: single
